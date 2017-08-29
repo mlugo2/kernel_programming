@@ -1,0 +1,1 @@
+cmd_/home/marco/kernel_programming/LDD/hello.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/marco/kernel_programming/LDD/hello.ko /home/marco/kernel_programming/LDD/hello.o /home/marco/kernel_programming/LDD/hello.mod.o
