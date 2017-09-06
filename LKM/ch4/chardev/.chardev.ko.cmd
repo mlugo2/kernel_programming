@@ -1,0 +1,1 @@
+cmd_/home/marco/kernel_programming/LKM/ch4/chardev/chardev.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/marco/kernel_programming/LKM/ch4/chardev/chardev.ko /home/marco/kernel_programming/LKM/ch4/chardev/chardev.o /home/marco/kernel_programming/LKM/ch4/chardev/chardev.mod.o
