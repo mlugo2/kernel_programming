@@ -83,19 +83,19 @@ void cleanup_module(void)
 
 static int device_open(struct inode *inode, struct file *file)
 {
-	// static int counter = 0;
+	static int counter = 0;
 
-	// if (Device_Open)
-	// 	return -EBUSY;
+	if (Device_Open)
+		return -EBUSY;
 
-	// Device_Open++;
-	// sprintf(msg, "I already told you %d times Hello world!\n", counter++);
-	// try_module_get(THIS_MODULE);
+	Device_Open++;
+	sprintf(msg, "I already told you %d times Hello world!\n", counter++);
+	msg_Ptr = msg;
+	try_module_get(THIS_MODULE);
 
-	// return SUCCESS;
+	return SUCCESS;
 
-	printk(KERN_INFO "Device opened! :).\n")
-	return 0
+	return 0;
 }
 
 /*
@@ -133,7 +133,6 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h */
 	 *	If we're at the end of the message.
 	 * 	return 0 signifying end of file
 	 */
-	*msg_Ptr = 1;
 	if (*msg_Ptr == 0)
 		return 0;
 
@@ -148,7 +147,7 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h */
 		 *	put_user which copies data from the kernel data segment to
 		 *	the user data segment.
 		 */
-		put_user(*(msg_Ptr), buffer++);
+		put_user(*(msg_Ptr++), buffer++);
 
 		length--;
 		bytes_read++;
